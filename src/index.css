@@ -1,0 +1,313 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Advanced Crypto Trading Platform Design System */
+
+@layer base {
+  :root {
+    /* Dark Crypto Theme */
+    --background: 220 25% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 20% 7%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 20% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Golden/Crypto Accent */
+    --primary: 45 100% 55%;
+    --primary-foreground: 220 25% 4%;
+
+    /* Subtle Secondary */
+    --secondary: 220 15% 11%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 220 15% 14%;
+    --muted-foreground: 220 5% 65%;
+
+    --accent: 120 100% 45%;
+    --accent-foreground: 220 25% 4%;
+
+    /* Crypto Success/Danger Colors */
+    --success: 120 100% 45%;
+    --success-foreground: 0 0% 0%;
+    --danger: 0 85% 55%;
+    --danger-foreground: 0 0% 98%;
+
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 15% 16%;
+    --input: 220 15% 16%;
+    --ring: 45 100% 55%;
+
+    --radius: 0.75rem;
+
+    /* Crypto Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(45 100% 55%), hsl(35 100% 50%));
+    --gradient-success: linear-gradient(135deg, hsl(120 100% 45%), hsl(140 100% 40%));
+    --gradient-danger: linear-gradient(135deg, hsl(0 85% 55%), hsl(15 100% 50%));
+    --gradient-dark: linear-gradient(135deg, hsl(220 25% 4%), hsl(220 15% 11%));
+    --gradient-card: linear-gradient(135deg, hsl(220 20% 7%), hsl(220 15% 9%));
+    --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+    --gradient-crypto: linear-gradient(45deg, hsl(45 100% 55%), hsl(120 100% 45%), hsl(240 100% 55%));
+
+    /* Advanced Shadows */
+    --shadow-premium: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+    --shadow-glow: 0 0 40px hsl(45 100% 55% / 0.25);
+    --shadow-success: 0 0 30px hsl(120 100% 45% / 0.3);
+    --shadow-danger: 0 0 30px hsl(0 85% 55% / 0.3);
+    --shadow-card: 0 8px 32px -4px rgba(0, 0, 0, 0.6);
+    --shadow-float: 0 20px 40px -8px rgba(0, 0, 0, 0.5);
+
+    /* Advanced Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-spring: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Glass Effect */
+  .glass {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Crypto Card */
+  .card-crypto {
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+    border: 1px solid hsl(var(--border));
+    transition: var(--transition-smooth);
+  }
+
+  .card-crypto:hover {
+    box-shadow: var(--shadow-float);
+    transform: translateY(-4px);
+  }
+
+  /* Flip Card */
+  .flip-card {
+    perspective: 1000px;
+    width: 100%;
+    height: 200px;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: var(--radius);
+  }
+
+  .flip-card-back {
+    transform: rotateY(180deg);
+  }
+
+  /* Morphing Button */
+  .morph-btn {
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-spring);
+  }
+
+  .morph-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-primary);
+    transition: left 0.5s ease;
+    z-index: -1;
+  }
+
+  .morph-btn:hover::before {
+    left: 0;
+  }
+
+  /* Sliding Panel */
+  .slide-panel {
+    transform: translateX(-100%);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .slide-panel.open {
+    transform: translateX(0);
+  }
+
+  /* Animated Underline */
+  .link-animated {
+    position: relative;
+    display: inline-block;
+  }
+
+  .link-animated::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: width 0.4s ease;
+  }
+
+  .link-animated:hover::after {
+    width: 100%;
+  }
+
+  /* Advanced Hover Effects */
+  .hover-scale {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  .hover-rotate {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-rotate:hover {
+    transform: rotate(5deg) scale(1.05);
+  }
+
+  /* Floating Animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* Pulse Animation */
+  .pulse-crypto {
+    animation: pulse-crypto 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-crypto {
+    0%, 100% { 
+      transform: scale(1);
+      box-shadow: 0 0 0 0 hsl(var(--primary) / 0.7);
+    }
+    50% { 
+      transform: scale(1.02);
+      box-shadow: 0 0 0 20px hsl(var(--primary) / 0);
+    }
+  }
+
+  /* Glitch Effect */
+  .glitch {
+    position: relative;
+    animation: glitch 2s infinite;
+  }
+
+  @keyframes glitch {
+    0%, 98%, 100% {
+      transform: translate(0, 0);
+      filter: hue-rotate(0deg);
+    }
+    2% {
+      transform: translate(2px, 0);
+      filter: hue-rotate(90deg);
+    }
+    4% {
+      transform: translate(-2px, 0);
+      filter: hue-rotate(180deg);
+    }
+    6% {
+      transform: translate(0, 0);
+      filter: hue-rotate(270deg);
+    }
+  }
+
+  /* Matrix Rain Effect */
+  .matrix-bg {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .matrix-bg::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    background-image: 
+      linear-gradient(90deg, transparent 98%, hsl(var(--success)) 100%),
+      linear-gradient(90deg, transparent 98%, hsl(var(--primary)) 100%);
+    background-size: 3px 100%, 7px 100%;
+    animation: matrix 10s linear infinite;
+    opacity: 0.1;
+    z-index: 0;
+  }
+
+  @keyframes matrix {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(0); }
+  }
+
+  /* Parallax Effect */
+  .parallax {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .shadow-premium {
+    box-shadow: var(--shadow-premium);
+  }
+}
